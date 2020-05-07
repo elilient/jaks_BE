@@ -18,4 +18,9 @@ module.exports = {
             res.status(400).send(error)
         }
     },
+    // Clients Show Page
+    async clientShow(req, res, next) {
+        let client = await Client.findById(req.params.id);
+        res.send(client);
+    },
 };
