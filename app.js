@@ -8,6 +8,9 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const methodOverride = require("method-override");
 
+// Require routes
+const userRouter = require('./routes/user');
+
 const app = express();
 
 // Connect database
@@ -29,6 +32,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(methodOverride("_method"));
+
+// Mount routes
+app.use('/user', userRouter);
 
 
 // catch 404 and forward to error handler
