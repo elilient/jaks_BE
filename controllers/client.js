@@ -17,10 +17,17 @@ module.exports = {
         } catch (error) {
             res.status(400).send(error)
         }
+
     },
     // Clients Show Page
     async clientShow(req, res, next) {
         let client = await Client.findById(req.params.id);
+        res.send(client);
+    },
+    // Clients Update
+    async clientUpdate(req, res, next) {
+        let client = await Client.findByIdAndUpdate(req.params.id, req.body, { new: true });
+        await client.save();
         res.send(client);
     },
 };
