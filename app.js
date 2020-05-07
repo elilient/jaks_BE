@@ -10,6 +10,8 @@ const methodOverride = require("method-override");
 
 // Require routes
 const userRouter = require('./routes/user');
+const clientRouter = require('./routes/client');
+
 
 const app = express();
 
@@ -35,6 +37,7 @@ app.use(methodOverride("_method"));
 
 // Mount routes
 app.use('/user', userRouter);
+app.use('/client', clientRouter);
 
 
 // catch 404 and forward to error handler
