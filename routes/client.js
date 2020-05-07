@@ -7,6 +7,7 @@ const {
     clientShow,
     clientUpdate,
     clientDelete,
+    dataCreate
 } = require("../controllers/client");
 
 /* POST clients create /clients */
@@ -20,5 +21,8 @@ router.put('/:id', asyncErrorHandler(clientUpdate));
 
 /* DELETE clients delete /clients/:id */
 router.delete('/:id', asyncErrorHandler(clientDelete));
+
+/* CREATE data /clients/:id */
+router.post('/:id', asyncErrorHandler(dataCreate));
 
 module.exports = router;

@@ -13,7 +13,6 @@ const userRouter = require('./routes/user');
 const clientRouter = require('./routes/client');
 const clientsRouter = require('./routes/clients');
 
-
 const app = express();
 
 // Connect database
@@ -40,7 +39,6 @@ app.use(methodOverride("_method"));
 app.use('/user', userRouter);
 app.use('/client', clientRouter);
 app.use('/clients', clientsRouter);
-
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -1,5 +1,6 @@
 const Client = require("../models/client");
 const User = require("../models/user");
+const Data = require("../models/data");
 const mongoose = require("mongoose");
 
 module.exports = {
@@ -34,5 +35,13 @@ module.exports = {
     async clientDelete(req, res, next) {
         let client = await Client.findByIdAndRemove(req.params.id);
         res.send("Deleted client");
+    },
+    // Clients Create Data
+    async dataCreate(req, res, next) {
+        let client = await Client.findById(req.params.id);
+        let data = await new Data(req.body);
+        client.data.push(data);
+        client.save();
+        res.send(client);
     },
 }
