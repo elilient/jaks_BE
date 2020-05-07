@@ -30,4 +30,9 @@ module.exports = {
         await client.save();
         res.send(client);
     },
-};
+    // Clients Delete
+    async clientDelete(req, res, next) {
+        let client = await Client.findByIdAndRemove(req.params.id);
+        res.send("Deleted client");
+    },
+}
