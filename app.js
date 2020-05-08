@@ -12,6 +12,7 @@ const methodOverride = require("method-override");
 const userRouter = require('./routes/user');
 const clientRouter = require('./routes/client');
 const clientsRouter = require('./routes/clients');
+const calendarRouter = require('./routes/calendar');
 
 const app = express();
 
@@ -39,6 +40,7 @@ app.use(methodOverride("_method"));
 app.use('/user', userRouter);
 app.use('/client', clientRouter);
 app.use('/clients', clientsRouter);
+app.use('/calendar', calendarRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

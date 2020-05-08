@@ -31,6 +31,10 @@ const ClientSchema = new Schema({
             default: []
         }
     },
+    calendar: {
+        type:Array,
+        default: []
+    },
     lawyerid: Schema.Types.ObjectId
     // date: {
     //     type: Date,
