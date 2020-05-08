@@ -9,10 +9,10 @@ const {
     calendarDelete,
 } = require("../controllers/calendar");
 
-/* POST clients create /clients */
+/* POST calendar */
 router.post('/:id', auth,  asyncErrorHandler(calendarCreate));
 
-/* GET clients show /clients/:id */
+/* GET calendar */
 router.get('/:id', asyncErrorHandler(calendarShow));
 
 /* PUT clients update /clients/:id */
