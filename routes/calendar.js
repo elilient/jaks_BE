@@ -7,6 +7,7 @@ const {
     calendarShow,
     calendarUpdate,
     calendarDelete,
+    calendarShowId,
 } = require("../controllers/calendar");
 
 /* POST calendar */
@@ -14,6 +15,9 @@ router.post('/:id', auth,  asyncErrorHandler(calendarCreate));
 
 /* GET calendar */
 router.get('/:id', asyncErrorHandler(calendarShow));
+
+/* GET by ID calendar */
+router.get('/:id/:calid', asyncErrorHandler(calendarShowId));
 
 /* PUT clients update /clients/:id */
 router.put('/:id', asyncErrorHandler(calendarUpdate));

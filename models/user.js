@@ -35,8 +35,8 @@ const UserSchema = new Schema({
         }
     ],
     calendar: {
-        type: Schema.Types.ObjectId,
-        ref: "Calendar"
+        type: Array,
+        default: []
     },
     settings: {
         type: Schema.Types.ObjectId,

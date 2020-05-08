@@ -8,4 +8,4 @@ module.exports = {
         let clients = await Client.find({lawyerid: _id}, {lawyerid: 0});
         res.send(clients);
     },
-}
+};

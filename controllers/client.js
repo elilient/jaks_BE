@@ -43,4 +43,4 @@ module.exports = {
         client.save();
         res.send(client);
     },
-}
+};

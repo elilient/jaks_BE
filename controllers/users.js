@@ -27,7 +27,7 @@ module.exports = {
     },
     // View logged in user profile
     userMe(req, res, next) {
-        res.send(req.token);
+        res.send(req.user);
     },
     // Log user out of the application
     async userLogout(req, res, next) {
