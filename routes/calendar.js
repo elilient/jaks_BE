@@ -11,7 +11,7 @@ const {
 } = require("../controllers/calendar");
 
 /* POST calendar */
-router.post('/:id', auth,  asyncErrorHandler(calendarCreate));
+router.post('/', auth,  asyncErrorHandler(calendarCreate));
 
 /* GET calendar */
 router.get('/:id', asyncErrorHandler(calendarShow));
