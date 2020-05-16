@@ -34,7 +34,9 @@ module.exports = {
     },
     // Calendar delete entry
     async calendarDelete(req, res, next) {
-        let user = await User.findById(req.params.id);
+        let usertoken = req.headers.authorization.split(' ');
+        let userInfo = jwt.verify(usertoken[1], process.env.JWT_KEY);
+        let user = await User.findById(mongodb.ObjectId(userInfo._id));
         const foundCalendar = user.calendar.find(calendar => calendar._id == req.params.calid);
         user.calendar.pull(foundCalendar);
         user.save();
