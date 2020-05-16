@@ -18,7 +18,9 @@ module.exports = {
     },
     // Calendar show all entries
     async calendarShow(req,res, next) {
-        let user = await User.findById(req.params.id);
+        const usertoken = req.headers.authorization.split(' ');
+        const userInfo = jwt.verify(usertoken[1], process.env.JWT_KEY);
+        let user = await User.findById(mongodb.ObjectId(userInfo._id));
         const { calendar } = user;
         res.send(calendar);
     },

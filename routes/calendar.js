@@ -14,7 +14,7 @@ const {
 router.post('/', auth,  asyncErrorHandler(calendarCreate));
 
 /* GET calendar */
-router.get('/:id', asyncErrorHandler(calendarShow));
+router.get('/', asyncErrorHandler(calendarShow));
 
 /* GET by ID calendar */
 router.get('/:id/:calid', asyncErrorHandler(calendarShowId));
