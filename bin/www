@@ -3,10 +3,15 @@
 /**
  * Module dependencies.
  */
-
+const https = require("https"),
+    fs = require("fs");
+const options = {
+  key: fs.readFileSync("/etc/letsencrypt/live/jaks.ee/privkey.pem"),
+  cert: fs.readFileSync("/etc/letsencrypt/live/jaks.ee/fullchain.pem")
+};
 const app = require('../app');
 const debug = require('debug')('jaks3:server');
-const http = require('http');
+//const http = require('http');
 
 /**
  * Get port from environment and store in Express.
@@ -19,7 +24,7 @@ app.set('port', port);
  * Create HTTP server.
  */
 
-const server = http.createServer(app);
+const server = https.createServer(options, app);
 
 /**
  * Listen on provided port, on all network interfaces.
@@ -59,8 +64,8 @@ function onError(error) {
   }
 
   const bind = typeof port === 'string'
-    ? 'Pipe ' + port
-    : 'Port ' + port;
+      ? 'Pipe ' + port
+      : 'Port ' + port;
 
   // handle specific listen errors with friendly messages
   switch (error.code) {
@@ -84,7 +89,7 @@ function onError(error) {
 function onListening() {
   const addr = server.address();
   const bind = typeof addr === 'string'
-    ? 'pipe ' + addr
-    : 'port ' + addr.port;
+      ? 'pipe ' + addr
+      : 'port ' + addr.port;
   debug('Listening on ' + bind);
 }
