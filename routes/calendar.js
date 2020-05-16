@@ -17,7 +17,7 @@ router.post('/', auth,  asyncErrorHandler(calendarCreate));
 router.get('/', asyncErrorHandler(calendarShow));
 
 /* GET by ID calendar */
-router.get('/:id/:calid', asyncErrorHandler(calendarShowId));
+router.get('/:calid', asyncErrorHandler(calendarShowId));
 
 /* PUT clients update /clients/:id */
 router.put('/:id', asyncErrorHandler(calendarUpdate));
