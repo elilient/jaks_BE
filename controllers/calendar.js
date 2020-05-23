@@ -41,4 +41,11 @@ module.exports = {
         user.save();
         res.send("Entry deleted");
     },
+    // Calendar update by ID
+    async calendarUpdate(req, res, next) {
+        let usertoken = req.headers.authorization.split(' ');
+        let userInfo = jwt.verify(usertoken[1], process.env.JWT_KEY);
+        let foundCalendar = await Calendar.findByIdAndUpdate(req.params.calid, req.body, { lawyer_id: userInfo._id, lawyer_id: 0, new: true });
+        res.send(foundCalendar);
+    },
 };

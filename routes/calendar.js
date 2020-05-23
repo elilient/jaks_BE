@@ -20,7 +20,7 @@ router.get('/', asyncErrorHandler(calendarShow));
 router.get('/:calid', asyncErrorHandler(calendarShowId));
 
 /* PUT clients update /clients/:id */
-router.put('/:id', asyncErrorHandler(calendarUpdate));
+router.put('/:calid', asyncErrorHandler(calendarUpdate));
 
 /* DELETE clients delete /clients/:id */
 router.delete('/:calid', asyncErrorHandler(calendarDelete));
