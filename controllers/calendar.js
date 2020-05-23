@@ -27,11 +27,10 @@ module.exports = {
         res.send(calendar);
     },
     // Calendar show entry by ID
-    async calendarShowId(req,res, next) {
+    async calendarShowId(req, res, next) {
         let usertoken = req.headers.authorization.split(' ');
         let userInfo = jwt.verify(usertoken[1], process.env.JWT_KEY);
-        let user = await User.findById(mongodb.ObjectId(userInfo._id));
-        const foundCalendar = user.calendar.find(calendar => calendar._id == req.params.calid);
+        let foundCalendar = await Calendar.findById(req.params.calid, { lawyer_id: userInfo._id, lawyer_id: 0 });
         res.send(foundCalendar);
     },
     // Calendar delete entry
