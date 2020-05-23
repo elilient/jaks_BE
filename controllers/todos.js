@@ -19,5 +19,10 @@ module.exports = {
         let todos = await Todo.find({ lawyer_id: _id }, { lawyer_id: 0 });
         res.send(todos);
     },
-
+    // Todos Update
+    async todoUpdate(req, res, next) {
+        let todo = await Todo.findByIdAndUpdate(req.params.id, req.body, { new: true });
+        await todo.save();
+        res.send(todo);
+    },
 };
