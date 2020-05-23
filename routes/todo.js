@@ -6,6 +6,7 @@ const {
     todoCreate,
     todoShow,
     todoUpdate,
+    todoDelete
 } = require("../controllers/todos");
 
 /* POST todo element /todo */
@@ -16,5 +17,8 @@ router.get('/', auth, asyncErrorHandler(todoShow));
 
 /* PUT todo elements /todo/:id */
 router.put('/:id', auth, asyncErrorHandler(todoUpdate));
+
+/* DELETE todo elements /todo/:id */
+router.delete('/:id', auth, asyncErrorHandler(todoDelete));
 
 module.exports = router;

@@ -25,4 +25,12 @@ module.exports = {
         await todo.save();
         res.send(todo);
     },
+    // Todos Delete
+    async todoDelete(req, res, next) {
+        await Todo.findByIdAndDelete(req.params.id);
+        let user = await User.findById(req.user._id);
+        user.todo.remove(req.params.id);
+        user.save();
+        res.send("Deleted to-do");
+    },
 };
