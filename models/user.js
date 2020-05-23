@@ -34,10 +34,12 @@ const UserSchema = new Schema({
             ref: "Client"
         }
     ],
-    calendar: {
-        type: Array,
-        default: []
-    },
+    calendar: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: "Calendar"
+        }
+    ],
     todo: [
         {
             type: Schema.Types.ObjectId,
