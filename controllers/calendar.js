@@ -1,7 +1,5 @@
-const Client = require("../models/client");
 const User = require("../models/user");
 const Calendar = require("../models/calendar");
-const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken");
 const mongodb = require('mongodb');
 
@@ -37,9 +35,9 @@ module.exports = {
     async calendarDelete(req, res, next) {
         let usertoken = req.headers.authorization.split(' ');
         let userInfo = jwt.verify(usertoken[1], process.env.JWT_KEY);
-        let user = await User.findById(mongodb.ObjectId(userInfo._id));
-        const foundCalendar = user.calendar.find(calendar => calendar._id == req.params.calid);
-        user.calendar.pull(foundCalendar);
+        await Calendar.findByIdAndDelete(req.params.calid);
+        let user = await User.findById(userInfo._id);
+        user.calendar.remove(req.params.calid);
         user.save();
         res.send("Entry deleted");
     },
