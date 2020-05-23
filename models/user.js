@@ -38,10 +38,12 @@ const UserSchema = new Schema({
         type: Array,
         default: []
     },
-    settings: {
-        type: Schema.Types.ObjectId,
-        ref: "Settings"
-    },
+    todo: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: "Todo"
+        }
+    ],
     password: {
         type: String,
         required: true,
