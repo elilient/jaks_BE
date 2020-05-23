@@ -23,7 +23,7 @@ module.exports = {
         const usertoken = req.headers.authorization.split(' ');
         const userInfo = jwt.verify(usertoken[1], process.env.JWT_KEY);
         let user = await User.findById(mongodb.ObjectId(userInfo._id));
-        const { calendar } = user;
+        let calendar = await Calendar.find({ lawyer_id: userInfo._id }, { lawyer_id: 0 });
         res.send(calendar);
     },
     // Calendar show entry by ID
