@@ -10,19 +10,19 @@ const {
     dataCreate
 } = require("../controllers/client");
 
-/* POST clients create /clients */
+/* POST client /client */
 router.post('/', auth,  asyncErrorHandler(clientCreate));
 
-/* GET clients show /clients/:id */
-router.get('/:id', asyncErrorHandler(clientShow));
+/* GET client /client/:id */
+router.get('/:id', auth, asyncErrorHandler(clientShow));
 
-/* PUT clients update /clients/:id */
-router.put('/:id', asyncErrorHandler(clientUpdate));
+/* PUT client /client/:id */
+router.put('/:id', auth, asyncErrorHandler(clientUpdate));
 
-/* DELETE clients delete /clients/:id */
-router.delete('/:id', asyncErrorHandler(clientDelete));
+/* DELETE client /client/:id */
+router.delete('/:id', auth, asyncErrorHandler(clientDelete));
 
-/* CREATE data /clients/:id */
-router.post('/:id', asyncErrorHandler(dataCreate));
+/* CREATE data /client/:id */
+router.post('/:id', auth, asyncErrorHandler(dataCreate));
 
 module.exports = router;

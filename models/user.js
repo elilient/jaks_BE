@@ -46,6 +46,12 @@ const UserSchema = new Schema({
             ref: "Todo"
         }
     ],
+    timer: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: "Timer"
+        }
+    ],
     password: {
         type: String,
         required: true,
