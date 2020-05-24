@@ -3,7 +3,10 @@ const Schema = mongoose.Schema;
 
 const TodoSchema = new Schema({
     task: String,
-    isDone: Boolean,
+    isDone: {
+        type: Boolean,
+        default: false
+    },
     lawyer_id: Schema.Types.ObjectId
 });
 
