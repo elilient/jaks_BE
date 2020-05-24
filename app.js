@@ -14,6 +14,7 @@ const clientRouter = require('./routes/client');
 const clientsRouter = require('./routes/clients');
 const calendarRouter = require('./routes/calendar');
 const todoRouter = require('./routes/todo');
+const timerRouter = require('./routes/timer');
 
 const app = express();
 
@@ -44,6 +45,7 @@ app.use('/client', clientRouter);
 app.use('/clients', clientsRouter);
 app.use('/calendar', calendarRouter);
 app.use('/todo', todoRouter);
+app.use('/timer', timerRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
