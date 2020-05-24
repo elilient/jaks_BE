@@ -10,20 +10,20 @@ const {
     calendarShowId,
 } = require("../controllers/calendar");
 
-/* POST calendar */
+/* POST calendar /calendar/ */
 router.post('/', auth,  asyncErrorHandler(calendarCreate));
 
-/* GET calendar */
-router.get('/', asyncErrorHandler(calendarShow));
+/* GET calendar /calendar/ */
+router.get('/', auth, asyncErrorHandler(calendarShow));
 
-/* GET by ID calendar */
-router.get('/:calid', asyncErrorHandler(calendarShowId));
+/* GET by ID calendar /calendar/:calid */
+router.get('/:calid', auth, asyncErrorHandler(calendarShowId));
 
-/* PUT clients update /clients/:id */
-router.put('/:calid', asyncErrorHandler(calendarUpdate));
+/* PUT clients update /calendar/:calid */
+router.put('/:calid', auth, asyncErrorHandler(calendarUpdate));
 
-/* DELETE clients delete /clients/:id */
-router.delete('/:calid', asyncErrorHandler(calendarDelete));
+/* DELETE clients delete /calendar/:calid */
+router.delete('/:calid', auth, asyncErrorHandler(calendarDelete));
 
 
 

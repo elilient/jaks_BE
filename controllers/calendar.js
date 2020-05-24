@@ -10,7 +10,7 @@ module.exports = {
         let userInfo = jwt.verify(usertoken[1], process.env.JWT_KEY);
         let user = await User.findById(mongodb.ObjectId(userInfo._id));
         let calendar = await new Calendar(req.body);
-        calendar.set({lawyer_id: userInfo._id})
+        calendar.set({lawyer_id: userInfo._id});
         user.calendar.push(calendar);
         user.save();
         calendar.save();
@@ -20,7 +20,7 @@ module.exports = {
     async calendarShow(req,res, next) {
         const usertoken = req.headers.authorization.split(' ');
         const userInfo = jwt.verify(usertoken[1], process.env.JWT_KEY);
-        let user = await User.findById(mongodb.ObjectId(userInfo._id));
+        await User.findById(mongodb.ObjectId(userInfo._id));
         let calendar = await Calendar.find({ lawyer_id: userInfo._id }, { lawyer_id: 0 });
         res.send(calendar);
     },
