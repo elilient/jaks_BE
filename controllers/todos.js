@@ -4,10 +4,10 @@ const Todo = require("../models/todo");
 module.exports = {
     // Todos Create
     async todoCreate(req, res, next) {
-        const user = req.user._id
-        const { _id } = user;
+        let usertoken = req.headers.authorization.split(' ');
+        let userInfo = jwt.verify(usertoken[1], process.env.JWT_KEY);
         let todo = new Todo(req.body);
-        todo.set({ lawyer_id: req.user.id });
+        todo.set({ lawyer_id: userInfo._id });
         await todo.save();
         await User.findByIdAndUpdate({ _id }, { $push: { todo: todo } });
         res.send(todo);
