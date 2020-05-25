@@ -14,9 +14,9 @@ module.exports = {
     },
     // Todos Show
     async todoShow(req, res, next) {
-        const user = req.user._id;
-        const { _id } = user;
-        let todos = await Todo.find({ lawyer_id: _id }, { lawyer_id: 0 });
+        let usertoken = req.headers.authorization.split(' ');
+        let userInfo = jwt.verify(usertoken[1], process.env.JWT_KEY);
+        let todos = await Todo.find({ lawyer_id: userInfo._id }, { lawyer_id: 0 });
         res.send(todos);
     },
     // Todos Update
