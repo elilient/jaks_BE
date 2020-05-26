@@ -20,10 +20,9 @@ module.exports = {
     },
     // Clients Show Page
     async clientShow(req, res, next) {
-        const usertoken = req.headers.authorization.split(' ');
-        const userInfo = jwt.verify(usertoken[1], process.env.JWT_KEY);
-        await User.findById(mongodb.ObjectId(userInfo._id));
-        let client = await Client.find({ lawyer_id: userInfo._id }, { lawyer_id: 0 });
+        let usertoken = req.headers.authorization.split(' ');
+        let userInfo = jwt.verify(usertoken[1], process.env.JWT_KEY);
+        let client = await Client.findById(req.params.id, { lawyer_id: userInfo._id, lawyer_id: 0 });
         res.send(client);
     },
     // Clients Update
