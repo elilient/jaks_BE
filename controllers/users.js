@@ -19,7 +19,7 @@ module.exports = {
             const token = await user.generateAuthToken();
             res.send({ token })
         } catch (error) {
-            res.status(401).send({ error: 'Sisselogimine ebaõnnestus. Palun sisesta õige e-mail ja parool.' })
+            res.status(401).send({ error: 'Sisselogimine ebaõnnestus. Palun sisesta õige e-post ja parool.' })
         }
     },
     // View logged in user profile
