@@ -7,13 +7,13 @@ module.exports = {
     // Clients Create
     async clientCreate(req, res, next) {
         try {
-            const user = req.user._id;
-            const { _id } = user;
+            let usertoken = req.headers.authorization.split(' ');
+            let userInfo = jwt.verify(usertoken[1], process.env.JWT_KEY);
             let client = new Client(req.body);
-            client.set({ lawyerid: _id });
+            client.set({ lawyerid: userInfo._id });
             await client.save();
-            await User.findByIdAndUpdate({ _id }, { $push: { clients: client } });
-            res.status(201).send({client});
+            await User.findByIdAndUpdate(userInfo._id, { $push: { clients: client } });
+            res.status(201).send(client);
         } catch (error) {
             res.status(400).send(error)
         }
