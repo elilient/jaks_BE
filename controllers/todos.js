@@ -1,5 +1,6 @@
 const User = require("../models/user");
 const Todo = require("../models/todo");
+const jwt = require("jsonwebtoken");
 
 module.exports = {
     // Todos Create
@@ -9,7 +10,7 @@ module.exports = {
         let todo = new Todo(req.body);
         todo.set({ lawyer_id: userInfo._id });
         await todo.save();
-        await User.findByIdAndUpdate({ _id }, { $push: { todo: todo } });
+        await User.findByIdAndUpdate(userInfo._id, { $push: { todo: todo } });
         res.send(todo);
     },
     // Todos Show

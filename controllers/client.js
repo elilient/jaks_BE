@@ -7,23 +7,22 @@ module.exports = {
     // Clients Create
     async clientCreate(req, res, next) {
         try {
-            const user = req.user._id;
-            const { _id } = user;
+            let usertoken = req.headers.authorization.split(' ');
+            let userInfo = jwt.verify(usertoken[1], process.env.JWT_KEY);
             let client = new Client(req.body);
-            client.set({ lawyerid: _id });
+            client.set({ lawyerid: userInfo._id });
             await client.save();
-            await User.findByIdAndUpdate({ _id }, { $push: { clients: client } });
-            res.status(201).send({client});
+            await User.findByIdAndUpdate(userInfo._id, { $push: { clients: client } });
+            res.status(201).send(client);
         } catch (error) {
             res.status(400).send(error)
         }
     },
     // Clients Show Page
     async clientShow(req, res, next) {
-        const usertoekn = req.headers.authorization.split(' ');
-        const userInfo = jwt.verify(usertoken[1], process.env.JWT_KEY);
-        await User.findById(mongodb.ObjectId(userInfo._id));
-        let client = await Client.find({ lawyer_id: userInfo._id }, { lawyer_id: 0 });
+        let usertoken = req.headers.authorization.split(' ');
+        let userInfo = jwt.verify(usertoken[1], process.env.JWT_KEY);
+        let client = await Client.findById(req.params.id, { lawyer_id: userInfo._id, lawyer_id: 0 });
         res.send(client);
     },
     // Clients Update
